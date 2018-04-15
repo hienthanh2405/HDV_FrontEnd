@@ -1,0 +1,42 @@
+// @nebular theming framework
+@import '~@nebular/theme/styles/theming';
+// @nebular out of the box themes
+@import '~@nebular/theme/styles/themes';
+
+// which themes you what to enable (empty to enable all)
+$nb-enabled-themes: (default, cosmic);
+
+$nb-themes: nb-register-theme((
+  color-primary:  #0177B5,
+ // color-success: #0177B5,
+  link-color: #0177B5,
+  color-fg-highlight: #0177B5,
+//  card-header-success-bg: #0177B5,
+  menu-submenu-active-border-color: #0177B5,
+  tabs-selected: #0177B5,
+  link-color-hover: #0177B5,
+//  btn-success-bg: #0177B5,
+  route-tabs-selected: #0177B5,
+  user-menu-active-bg: #0177B5,
+  user-menu-border: #0177B5,
+  smart-table-paging-bg-active: #0177B5,
+
+ // app wise variables for each theme
+  sidebar-header-gap: 2rem,
+  sidebar-header-height: initial,
+  layout-content-width: 1400px,
+  font-main: Roboto,
+  font-secondary: Exo,
+), default, default);
+
+$nb-themes: nb-register-theme((
+  // app wise variables for each theme
+  sidebar-header-gap: 2rem,
+  sidebar-header-height: initial,
+  layout-content-width: 1400px,
+
+  font-main: Roboto,
+  font-secondary: Exo,
+), cosmic, cosmic);
+
+$diabled-background-color: #b7b7b7;

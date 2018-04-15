@@ -1,0 +1,125 @@
+@import 'themes';
+$color-primary: #0177B5;
+$color-danger: #ed1e1e;
+$color-gray: #eceeef;
+
+.sortable { 
+    cursor: pointer !important;
+}
+.sort.desc::after{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 4px solid #fff;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    margin-bottom: 2px;
+    margin-left: 5px;
+}
+.sort.asc::after{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid #fff;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    margin-left: 5px;
+}
+.sort.both::after{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 4px solid #fff;
+    border-bottom: 4px solid #fff;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    margin-left: 5px;
+}
+thead { 
+    background-color: $color-primary;
+    color: #fff;
+}
+table tr:nth-child(even) {
+    background: #f9f9f9;;
+}
+.popover-content {
+    padding: 0px 0px;
+}
+
+// my customize class 
+.customize {
+    &-action-button { 
+        cursor: pointer;
+        margin: 10px 0;
+        padding: 6px 12px;
+        font-size: 16px;
+    }
+    &-action-button:hover { 
+      background-color: $color-gray;
+    }
+    &-edit-button { 
+        color: $color-primary; 
+    }
+    &-delete-button { 
+        color: $color-danger;
+    }
+}
+.form-group {
+    margin-bottom: 6px;
+}
+
+// utility class
+.default-vertical-margin {
+    margin: 10px;
+}
+.table-col-min-width { 
+    min-width: 120px;
+}
+.star { 
+    color: $color-danger;
+    padding-left: 2px;
+}
+.text-danger { 
+    color: $color-danger;
+}
+.text-primary { 
+    color: $color-primary;
+}
+.icon-button { 
+    color: $color-primary;
+    cursor: pointer;
+}
+.text-middle {
+    vertical-align: middle !important;
+}
+.margin-vertical {
+    margin: 12px 0;
+}
+.margin-all {
+    margin: 12px 12px;
+}
+.margin-middle { 
+    margin: auto 0;
+}
+.margin-horizontal { 
+    margin: 0 12px;
+}
+.hand {
+    cursor: pointer;
+}
+ngb-modal-window .popover {
+    max-width:500px;
+    width: 500px;
+ }
+ 
+ .label-primary { 
+    background-color:$color-primary;
+    padding: 3px 5px;
+    border-radius: 5px 5px;
+    color: #fff;
+ }

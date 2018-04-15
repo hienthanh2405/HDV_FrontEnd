@@ -1,0 +1,78 @@
+<nb-card>
+  <nb-card-header>
+    {{ 'car' | translate }}
+    <span class="pull-right">
+      <button class="btn btn-hero-secondary btn-demo" (click)="getList()">
+        <i class="fa fa-refresh"></i>
+      </button>
+    </span>
+  </nb-card-header>
+  <nb-card-body>
+    <form (ngSubmit)="onClickSearchBtn()">
+    <div class="row default-vertical-margin">
+      <div class="col-sm-6">
+        <div class="input-group">
+          <input type="text" class="form-control" name="search" [(ngModel)]="keyword" placeholder="{{ 'car_search' | translate }}">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary">{{ 'search' | translate}}</button>
+          </span>
+        </div>
+      </div>
+      <div class="col-sm-6">
+          <button class="pull-right btn btn-primary" (click)="onClickAddBtn()" >{{ 'add' | translate}}</button>
+      </div>
+    </div>
+    <div class="row">
+      <table class="table">
+        <thead>
+          <td  class="table-col-min-width sortable" [ngClass]="detectSortClassName('carNumber')" 
+          (click)="onChangeSortedField('carNumber')">{{ 'car_number' | translate }}</td>
+          <td  class="table-col-min-width sortable" [ngClass]="detectSortClassName('carModel')" 
+          (click)="onChangeSortedField('carModel')">{{ 'car_model' | translate }}</td>   
+          <td  class="sortable" [ngClass]="detectSortClassName('currentKm')" 
+          (click)="onChangeSortedField('currentKm')">{{ 'current_km' | translate }}</td>
+          <td  class="sortable" [ngClass]="detectSortClassName('updateKmDate')" 
+          (click)="onChangeSortedField('updateKmDate')">{{ 'update_km_date' | translate }}</td>
+          <td>{{ 'car_type' | translate }}</td>
+          <td>{{ 'driver' | translate }}</td>
+          <td>{{ 'phone' | translate}}</td>
+          <td  class="table-col-min-width sortable" [ngClass]="detectSortClassName('note')" 
+          (click)="onChangeSortedField('note')">{{ 'note' | translate }}</td>
+          <td  class="sortable" [ngClass]="detectSortClassName('accumulationPoint')" 
+         (click)="onChangeSortedField('accumulationPoint')">{{  'accumulation_point' |  translate}}</td>
+          <td></td>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataList">
+            <td>{{item.carNumber}}</td>
+            <td>{{item.carModel}}</td>
+            <td>{{item.currentKm}}</td>
+            <td>{{ helperService.convertJSONDatetoDayMonthYear(item.updateKmDate) }}</td>
+            <td>{{item.carType?.name}}</td>
+            <td>{{item.driver?.lastName}} {{item.driver?.firstName }}</td>
+            <td>{{item.driver?.phone}}</td>
+            <td>{{item.note}}</td>
+            <td>{{helperService.roundOneDecimal(item.accumulationPoint)}}</td>
+            <td>
+                <ng-template #popContent>
+                    <div class="customize-action-button customize-edit-button" (click)="onClickEditBtn(item)">
+                      <i class="fa fa-pencil" aria-hidden="true"></i> {{'edit' | translate}}
+                    </div>
+                    <div class="customize-action-button customize-delete-button" (click)="onClickDeleteBtn(item)">
+                        <i class="fa fa-trash" aria-hidden="true"></i> {{'delete' | translate}}
+                    </div>
+                </ng-template>
+                <button type="button" class="btn btn-sm btn-outline-secondary"
+                 placement="bottom" [ngbPopover]="popContent">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </button>                
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ngb-pagination class="pull-right" [collectionSize]="totalSize" [(page)]="page" (pageChange)="onPageChange($event)"></ngb-pagination>
+  </form>
+  </nb-card-body>
+
+</nb-card>

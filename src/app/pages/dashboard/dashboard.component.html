@@ -1,0 +1,47 @@
+<nb-card>
+  <nb-card-header>
+    {{'dashboard' | translate}}
+  </nb-card-header>
+  <nb-card-body>
+    <div *ngIf="isValidRole">
+      <h4>{{'today_activities' | translate}} : {{todayString}}</h4>
+      <div class="row">
+        <div class="col-sm-6">
+          <nb-card>
+            <nb-card-header class="dashboard-card-header">
+              {{'sale_money' | translate}}
+              <button class="btn btn-outline-primary btn-tn pull-right" (click)="getSaleMoney()">
+                <i class="fa fa-refresh"></i>
+              </button>
+            </nb-card-header>
+            <nb-card-body>
+              <div>
+                <b>
+                  <label>{{'summary_money' | translate}} : </label> {{saleMoneyData?.totalMoney | spaceReplacer}}
+                </b>
+              </div>
+              <div>
+                <label>{{'payment_cash' | translate}} : </label> {{saleMoneyData?.totalCash | spaceReplacer}}
+              </div>
+              <div>
+                <label>{{'payment_card' | translate}} : </label> {{saleMoneyData?.totalCard | spaceReplacer}}
+              </div>
+              <div>
+                <label>{{'payment_bank' | translate}} : </label> {{saleMoneyData?.totalBank | spaceReplacer}}
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+    </div>
+    <div  *ngIf="!isValidRole">
+      <div class="row">
+        <div class="col-sm-12">
+            <img class="image" style="max-width: 100%" src="assets/images/welcome-01.png">
+        </div>
+      </div>
+    </div>
+
+  </nb-card-body>
+
+</nb-card>

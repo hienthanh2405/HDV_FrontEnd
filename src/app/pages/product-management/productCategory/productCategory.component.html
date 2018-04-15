@@ -1,0 +1,63 @@
+<nb-card>
+  <nb-card-header>
+    {{ 'productCategory' | translate }}
+    <span class="pull-right">
+      <div class="row">
+        <div class="col-sm-6">
+          <showed-columns-button [showedColumnList]="showedColumnList"></showed-columns-button>
+        </div>
+        <div class="col-sm-6">
+          <button class="btn btn-hero-secondary btn-demo" (click)="getList()">
+            <i class="fa fa-refresh"></i>
+          </button>
+        </div>
+      </div>
+    </span>
+  </nb-card-header>
+  <nb-card-body>
+    <form (ngSubmit)="onClickSearchBtn()">
+      <div class="row default-vertical-margin">
+        <div class="col-sm-6">
+          <div class="input-group">
+            <input type="text" class="form-control" name="search" [(ngModel)]="keyword" placeholder="{{ 'demo_search_placeholder' | translate }}">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit">{{ 'search' | translate}}</button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <button class="pull-right btn btn-primary" (click)="onClickAddBtn()">{{ 'add' | translate}}</button>
+        </div>
+      </div>
+      <div class="row">
+        <table class="table">
+          <thead>
+            <td *ngFor="let showedColumn of showedColumnList" [hidden]="!helperService.isShowedColumn(showedColumn.name , showedColumnList )"
+              [ngClass]="helperService.getSortableCssClass(sort , showedColumn.name ,   showedColumn.sortable )" (click)="onChangeSortedField(showedColumn.name , showedColumn.sortable)">{{ showedColumn.translateKey | translate }}</td>
+            <td></td>
+
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of dataList">
+              <td *ngIf="helperService.isShowedColumn('Name', showedColumnList)">{{item.name}}</td>
+              <td>
+                <ng-template #popContent>
+                  <div class="customize-action-button customize-edit-button" (click)="onClickEditBtn(item)">
+                    <i class="fa fa-pencil" aria-hidden="true"></i> {{'edit' | translate}}
+                  </div>
+                  <div class="customize-action-button customize-delete-button" (click)="onClickDeleteBtn(item)">
+                    <i class="fa fa-trash" aria-hidden="true"></i> {{'delete' | translate}}
+                  </div>
+                </ng-template>
+                <button type="button" class="btn btn-sm btn-outline-secondary" placement="bottom" [ngbPopover]="popContent">
+                  <i class="fa fa-cog" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ngb-pagination class="pull-right" [collectionSize]="totalSize" [(page)]="page" (pageChange)="onPageChange($event)"></ngb-pagination>
+    </form>
+  </nb-card-body>
+</nb-card>

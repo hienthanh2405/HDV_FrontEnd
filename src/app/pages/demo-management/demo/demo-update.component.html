@@ -1,0 +1,123 @@
+<div class="modal-header">
+    <h4 class="modal-title">
+        <span *ngIf="!isEditMode">{{'add_demo' | translate }}</span>
+        <span *ngIf="isEditMode">{{'edit_demo' | translate }}</span>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<form #dataForm="ngForm" (ngSubmit)="onClickSaveBtn()">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="name">{{'name' | translate }}<i class="star">*</i></label>
+                    <input type="text" autofocus class="form-control" required [(ngModel)]="model.name"
+                    id="name" name="name" #name="ngModel"
+                    (ngModelChange)="onChangeNameValue(model.id, model.name)">
+                    <small class="form-text error" *ngIf="name.errors?.required && name.touched">
+                        {{ "is_required" | translate }}
+                     </small>
+                     <small class="form-text error" *ngIf="!name.errors?.required && name.touched && isDuplicatedName">
+                        {{ "duplicated_value" | translate }}
+                     </small>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="capitalPrice">{{'capital_price' | translate }}<i class="star">*</i></label>
+                    <input type="nummber" class="form-control" required pattern="[0-9]+" [(ngModel)]="model.capitalPrice" id="capitalPrice" name="capitalPrice"
+                        #capitalPrice="ngModel" currencyMask >
+                    <small class="form-text error" *ngIf="capitalPrice.errors?.required && capitalPrice.touched">
+                        {{ "is_required" | translate }}
+                    </small>
+                    <small class="form-text error" *ngIf="capitalPrice.errors?.pattern && capitalPrice.touched">
+                        {{ "number_only" | translate }}
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="salePrice">{{'sale_price' | translate }}<i class="star">*</i></label>
+                    <input type="nummber" class="form-control" required pattern="[0-9]+" [(ngModel)]="model.salePrice" id="salePrice" name="salePrice"
+                        #salePrice="ngModel" currencyMask>
+                    <small class="form-text error" *ngIf="salePrice.errors?.required && salePrice.touched">
+                        {{ "is_required" | translate }}
+                    </small>
+                    <small class="form-text error" *ngIf="salePrice.errors?.pattern && salePrice.touched">
+                        {{ "number_only" | translate }}
+                    </small>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="updatePriceDate">{{'update_price_date' | translate }}<i class="star">*</i></label>
+                    <div class="input-group">
+                        <input class="form-control" required placeholder="{{ 'day_month_year' | translate }}" id="updatePriceDate" name="updatePriceDate" 
+                            [(ngModel)]="selectedDate"
+                            ngbDatepicker #updatePriceDate="ngModel" #d="ngbDatepicker">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" (click)="d.toggle()" type="button">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <small class="form-text error" *ngIf="updatePriceDate.errors?.required && updatePriceDate.touched">
+                        {{ "is_required" | translate }}
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="provider">{{'provider' | translate }}<i class="star">*</i></label>
+                    <select class="form-control" required [(ngModel)]="model.providerId" id="provider" name="provider" #provider="ngModel">
+                        <option [ngValue]="item.id" *ngFor="let item of providersList | sort:'name' " >{{item.name}}</option>
+                      </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="demo-category">{{'demo_categories' | translate }}<i class="star">*</i></label>
+                    <select class="form-control" required [(ngModel)]="model.demoCategoryId" id="demo-category" name="demo-category" #demoCategory="ngModel">
+                        <option [ngValue]="item.id" *ngFor="let item of demoCategoryList | sort:'name' " >{{item.name}}</option>
+                      </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="note">{{'note' | translate }}</label>
+                    <textarea rows="1" class="form-control" id="note" name="note" [(ngModel)]="model.note"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="!isEditMode">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="note">{{'add_default_demo_storage' | translate }}: </label>
+                        <div class="form-group validation-checkboxes row">
+                            <nb-checkbox status="success" [(ngModel)]="isSelectedStorages[i]" name="inputStorageId_{{i}}" class="col-sm-6" [value]="storage.id" *ngFor="let storage of allStorages; let i = index;">{{storage.name}}</nb-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+    <div class="modal-footer">
+        <!-- <button type="submit" class="btn btn-primary" [disabled]="!dataForm.form.valid || isDuplicatedForm()">{{'save' | translate}}</button> -->
+        <div class="pull-left" *ngIf="!isEditMode">
+            <nb-checkbox status="success" [(ngModel)]="isKeepOpen" name="isKeepOpen">{{'continue_add_demo' | translate}}</nb-checkbox>
+        </div>
+        <button type="submit" class="btn btn-primary">{{'save' | translate}}</button>
+        
+    </div>
+</form>

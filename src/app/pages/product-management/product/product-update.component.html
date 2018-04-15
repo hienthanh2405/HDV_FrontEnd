@@ -1,0 +1,121 @@
+<div class="modal-header">
+    <h4 class="modal-title">
+        <span *ngIf="!isEditMode">{{'add_product' | translate }}</span>
+        <span *ngIf="isEditMode">{{'edit_demo' | translate }}</span>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<form #dataForm="ngForm" (ngSubmit)="onClickSaveBtn()">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>{{'name_product' | translate }}<i class="star">*</i></label>
+                    <input type="text" autofocus class="form-control" required [(ngModel)]="model.name"
+                    id="name" name="name" #name="ngModel"
+                    (ngModelChange)="onChangeNameValue(model.id, model.name)">
+                    <small class="form-text error" *ngIf="name.errors?.required && name.touched">
+                        {{ "is_required" | translate }}
+                     </small>
+                     <small class="form-text error" *ngIf="!name.errors?.required && name.touched && isDuplicatedName">
+                        {{ "duplicated_value" | translate }}
+                     </small>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>{{'code_product' | translate }}<i class="star">*</i></label>
+                    <input type="text" class="form-control" required [(ngModel)]="model.code"  name="code"
+                        #code="ngModel" >
+                    <small class="form-text error" *ngIf="code.errors?.required && code.touched">
+                        {{ "is_required" | translate }}
+                    </small>
+                    <small class="form-text error" *ngIf="code.errors?.pattern && code.touched">
+                        {{ "duplicated_value" | translate }}
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>{{'NameProductCatogory' | translate }}<i class="star">*</i></label>
+                    <select class="form-control" required [(ngModel)]="model.ProductCategoryId"  name="NameProductCatogory" #NameProductCatogory="ngModel">
+                        <option [ngValue]="item.id" *ngFor="let item of allProductCategories | sort:'name' " [value]="item.id" >{{item.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>{{'RetailPrice' | translate }}<i class="star">*</i></label>
+                    <input type="number" autofocus class="form-control" required pattern="[0-9]+" required [(ngModel)]="model.RetailPrice"
+                     name="RetailPrice" #RetailPrice="ngModel"
+                    (ngModelChange)="onChangeNameValue(model.id, model.RetailPrice)">
+                    <small class="form-text error" *ngIf="RetailPrice.errors?.required && RetailPrice.touched">
+                        {{ "is_required" | translate }}
+                     </small>
+                     <small class="form-text error" *ngIf="!RetailPrice.errors?.required && RetailPrice.touched && isDuplicatedName">
+                        {{ "duplicated_value" | translate }}
+                     </small>
+                </div>
+            </div>
+           
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>{{'WholeSalePrice' | translate }}<i class="star">*</i></label>
+                    <input type="number" autofocus class="form-control" required pattern="[0-9]+" required [(ngModel)]="model.WholeSalePrice"
+                    name="WholeSalePrice" #WholeSalePrice="ngModel"
+                    (ngModelChange)="onChangeNameValue(model.id, model.WholeSalePrice)">
+                    <small class="form-text error" *ngIf="WholeSalePrice.errors?.required && WholeSalePrice.touched">
+                        {{ "is_required" | translate }}
+                     </small>
+                     <small class="form-text error" *ngIf="!WholeSalePrice.errors?.required && WholeSalePrice.touched && isDuplicatedName">
+                        {{ "duplicated_value" | translate }}
+                     </small>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>{{'DiscountPercent' | translate }}<i class="star">*</i></label>
+                    <input type="number" autofocus class="form-control" required pattern="[0-9]+" required [(ngModel)]="model.DiscountPercent"
+                     name="DiscountPercent" #DiscountPercent="ngModel"
+                    (ngModelChange)="onChangeNameValue(model.id, model.RetailPrice)">
+                    <small class="form-text error" *ngIf="WholeSalePrice.errors?.required && WholeSalePrice.touched">
+                        {{ "is_required" | translate }}
+                     </small>
+                     <small class="form-text error" *ngIf="!WholeSalePrice.errors?.required && WholeSalePrice.touched && isDuplicatedName">
+                        {{ "duplicated_value" | translate }}
+                     </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>{{'ImageUrlList' | translate }}<i class="star">*</i></label>
+                    <textarea rows="1" class="form-control" name="ImageUrlList" [(ngModel)]="model.ImageUrlList"></textarea>
+                    <small class="form-text error" *ngIf="WholeSalePrice.errors?.required && WholeSalePrice.touched">
+                        {{ "is_required" | translate }}
+                     </small>
+                     <small class="form-text error" *ngIf="!WholeSalePrice.errors?.required && WholeSalePrice.touched && isDuplicatedName">
+                        {{ "duplicated_value" | translate }}
+                     </small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <!-- <button type="submit" class="btn btn-primary" [disabled]="!dataForm.form.valid || isDuplicatedForm()">{{'save' | translate}}</button> -->
+        <button type="submit" class="btn btn-primary" [disabled] = "!dataForm.form.valid">{{'save' | translate}}
+            
+        </button>
+        
+    </div>
+</form>

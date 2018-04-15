@@ -1,0 +1,22 @@
+image: node:latest
+
+cache:
+  paths:
+    - node_modules/
+
+build_dev:
+  environment: Development
+  only:
+    - dev
+  script:
+    - npm install
+    - ./node_modules/@angular/cli/bin/ng build --prod
+
+
+build_production:
+  environment: Production
+  only:
+    - production
+  script:
+    - npm install
+    - ./node_modules/@angular/cli/bin/ng build --prod

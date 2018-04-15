@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h4 class="modal-title">
+        {{title}}
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div [hidden]="deleteMessage != null">{{ 'delete_message' | translate }}</div>
+    <div [hidden]="deleteMessage == null" [innerHTML]="deleteMessage">
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-hero-secondary btn-demo" (click)="activeModal.close()">{{'cancel' | translate}}</button>
+    <span [hidden]="isExistTextButton">
+        <button type="button" class="btn btn-danger" (click)="onClickDeleteBtn()">{{'delete' | translate}}</button>
+    </span>
+    <span [hidden]="!isExistTextButton">
+        <button type="button" class="btn btn-danger" (click)="onClickDeleteBtn()">{{buttonText}}</button>
+    </span>
+
+</div>

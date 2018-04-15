@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h4 class="modal-title">
+        <span *ngIf="!isEditMode">{{'add_productCategory' | translate }}</span>
+        <span *ngIf="isEditMode">{{'edit_productCategory' | translate }}</span>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<form #dataForm="ngForm" (ngSubmit)="onClickSaveBtn()">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>{{'nameProductCategory' | translate }}<i class="star">*</i></label>
+                    <input type="text" autofocus class="form-control" required [(ngModel)]="model.Name" id="Name"
+                    name="Name" #Name="ngModel"
+                    (ngModelChange)="onChangeNameValue(model.id, model.Name)">
+                    <small class="form-text error" *ngIf="Name.errors?.required && Name.touched">
+                        {{ "is_required" | translate }}
+                     </small>
+                     <small class="form-text error" *ngIf="!Name.errors?.required && Name.touched && isDuplicatedName">
+                        {{ "duplicated_value" | translate }}
+                     </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <!-- <button type="submit" class="btn btn-primary" [disabled]="!dataForm.form.valid || isDuplicatedForm()">{{'save' | translate}}</button> -->
+        <button type="submit" class="btn btn-primary" [disabled] = "!dataForm.form.valid">{{'save' | translate}}</button>
+        
+    </div>
+</form>

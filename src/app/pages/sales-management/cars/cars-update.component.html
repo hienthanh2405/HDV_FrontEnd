@@ -1,0 +1,130 @@
+<div class="modal-header">
+    <h4 class="modal-title">
+        <span *ngIf="!isEditMode">{{'add_car' | translate }}</span>
+        <span *ngIf="isEditMode">{{'edit_car' | translate }}</span>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<form #dataForm="ngForm" (ngSubmit)="onClickSaveBtn()">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>{{'car_number' | translate }}
+                        <i class="star">*</i>
+                    </label>
+                    <input type="text" autofocus class="form-control" required [(ngModel)]="model.carNumber" name="carNumber" #carNumber="ngModel">
+                    <small class="form-text error" *ngIf="helperService.isEmptyInput(carNumber)">
+                        {{ "is_required" | translate }}
+                    </small>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>{{'car_model' | translate }}
+                        <i class="star">*</i>
+                    </label>
+                    <input type="text" autofocus class="form-control" required [(ngModel)]="model.carModel" name="carModel" #carModel="ngModel">
+                    <small class="form-text error" *ngIf="helperService.isEmptyInput(carModel)">
+                        {{ "is_required" | translate }}
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>{{'current_km' | translate }}
+                        <i class="star">*</i>
+                    </label>
+                    <input type="number" required autofocus class="form-control" [(ngModel)]="model.currentKm" name="currentKm" #currentKm="ngModel">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>{{'update_km_date' | translate }}
+                        <i class="star">*</i>
+                    </label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="{{ 'day_month_year' | translate }}" name="updateKmDate" [(ngModel)]="selectedDate"
+                            ngbDatepicker #updateKmDate="ngModel" #d="ngbDatepicker">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary btn-tn" (click)="d.toggle()" type="button">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </button>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>{{'car_type' | translate }}
+                        <i class="star">*</i>
+                    </label>
+
+                    <select class="form-control" required [(ngModel)]="model.carTypeId" name="carTypeId" #carTypeId="ngModel">
+                        <option [ngValue]="item.id" *ngFor="let item of allCarTypes | sort:'name' ">{{item.name}}</option>
+                    </select>
+
+                    <small class="form-text error" *ngIf="helperService.isEmptyInput(carTypeId)">
+                        {{ "is_required" | translate }}
+                    </small>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <ng-template #popContent>
+                   
+                </ng-template>
+
+                <div class="form-group">
+                    <div>
+                        <label>
+                            <span [ngbPopover]="popContent" #p="ngbPopover" placement="left" triggers="manual">
+                                {{'driver' | translate }}
+                            </span>
+                            <i class="star">*</i>
+                        </label>
+                        <button type="button" class="btn btn-tn btn-primary pull-right" (click)="onClickCreateDriverBtn()">
+                            <i class="fa fa-plus" *ngIf="!popover.isOpen()"></i>
+                            <i class="fa fa-times" *ngIf="popover.isOpen()"></i>
+                        </button>
+                    </div>
+
+                    <input auto-complete [(ngModel)]="selectedDriver" [source]="allDrivers" [list-formatter]="autocompleListFormatter" value-property-name="id"
+                        display-property-name="fullName" name="driverId" class="form-control" no-match-found-text="{{'no_result_found' | translate }}"
+                        required #driverId="ngModel" autocomplete="off" accept-user-input="false" (ngModelChange)="onChangeDriver($event)"
+                    />
+
+                    <small class="form-text error" *ngIf="helperService.isEmptyInput(driverId)">
+                        {{ "is_required" | translate }}
+                    </small>
+                    <small class="form-text error" *ngIf="driverId.touched && !isValidDriver()">
+                        {{ "must_create_new" | translate }}
+                    </small>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>{{'note' | translate }}</label>
+                    <textarea class="form-control" [(ngModel)]="model.note" name="note" #note="ngModel"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="!dataForm.form.valid || !isValidDriver()">{{'save' | translate}}</button>
+    </div>
+</form>
