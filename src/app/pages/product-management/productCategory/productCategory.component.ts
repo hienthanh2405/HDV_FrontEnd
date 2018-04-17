@@ -24,7 +24,8 @@ export class ProductCategoryComponent implements OnInit {
   keyword: string = '';
 
   showedColumnList = [
-    { name: 'Name', translateKey: 'nameProductCategory', isShowed: true, sortable: true }
+    { name: 'Name', translateKey: 'nameProductCategory', isShowed: true, sortable: true },
+    { name: 'imgURL', translateKey: 'imglinkURL', isShowed: true, sortable: true }
   ];
 
   constructor(

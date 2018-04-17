@@ -132,8 +132,6 @@ export class SupplierUpdateModalComponent implements OnInit {
       console.log(this.isDuplicatedCode);
     }
     async onClickSaveBtn() {
-
-
         try {
             if (this.isEditMode) {
                 let response = await this.supplierService.edit(this.model.id, this.model);

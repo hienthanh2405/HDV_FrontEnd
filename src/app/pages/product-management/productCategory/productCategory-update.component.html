@@ -25,6 +25,20 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>{{'imglinkURL' | translate }}<i class="star">*</i></label>
+                    <textarea rows="1" class="form-control" required [(ngModel)]="model.imgURL" name="imgURL" #imgURL="ngModel" ></textarea>
+                    <small class="form-text error" *ngIf="imgURL.errors?.required && imgURL.touched">
+                        {{ "is_required" | translate }}
+                    </small>
+                    <small class="form-text error" *ngIf="!imgURL.errors?.required && imgURL.touched && isDuplicatedName">
+                        {{ "duplicated_value" | translate }}
+                    </small>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="modal-footer">

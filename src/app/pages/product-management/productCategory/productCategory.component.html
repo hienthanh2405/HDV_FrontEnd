@@ -40,6 +40,7 @@
           <tbody>
             <tr *ngFor="let item of dataList">
               <td *ngIf="helperService.isShowedColumn('Name', showedColumnList)">{{item.name}}</td>
+              <td *ngIf="helperService.isShowedColumn('imgURL', showedColumnList)">{{item.imageUrl}}</td>
               <td>
                 <ng-template #popContent>
                   <div class="customize-action-button customize-edit-button" (click)="onClickEditBtn(item)">

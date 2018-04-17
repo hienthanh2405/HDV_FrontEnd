@@ -46,6 +46,7 @@
     "nameProductCategory":"Tên danh mục sản phẩm",
     "add_productCategory":"Thêm danh mục sản phẩm",
     "edit_productCategory":"Sửa danh mục sản phẩm",
+    "imglinkURL":"Link hình ảnh",
 
     "inventory":"Tồn kho",
     "amount_inventory":"Số lượng tồn",
