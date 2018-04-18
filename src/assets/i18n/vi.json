@@ -154,5 +154,6 @@
     "payment_cash": "Tiền mặt",
     "payment_card": "Tiền thẻ",
     "payment_bank": "Chuyển khoản",
-    "type" : "Loại"
+    "type" : "Loại",
+    "duplicatedCode_value": "Mã code đã tồn tại"
 }

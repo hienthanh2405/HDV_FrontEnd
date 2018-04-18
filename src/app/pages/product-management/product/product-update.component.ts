@@ -35,6 +35,8 @@ export class ProductUpdateModalComponent implements OnInit {
     isSelectedStorages: any = [];
     allProductCategories: any = [];
     isKeepOpen: boolean = false;
+    dataListCode:any = [];
+    isDuplicatedCode = false;
 
     constructor(public activeModal: NgbActiveModal,
         public helperService: HelperService,
@@ -42,7 +44,7 @@ export class ProductUpdateModalComponent implements OnInit {
         private productService : ProductService,
         private translateService: TranslateService,
         private productCategoryService: ProductCategoryService,
-        private i18n: I18n, 
+        private i18n: I18n,
         config: NgbDatepickerConfig,
     ) {
         // config maxDate and languge for date picker
@@ -57,7 +59,30 @@ export class ProductUpdateModalComponent implements OnInit {
         }
         await this.getAllDemos();
         await this.getallProductCategories();
-        
+        await this.getListCode_products();
+
+    }
+    async getListCode_products() {
+      try {
+        let response = await this.productService.getAll_Codeproducts();
+        console.log(response);
+        this.dataListCode = response;
+        console.log(this.dataListCode);
+      } catch (error) {
+
+      }
+    }
+    onChangeProductCode(code){
+      console.log(code);
+      for(let i = 0 ; i < this.dataListCode.length ; i ++){
+        if (code === this.dataListCode[i]){
+              this.isDuplicatedCode = true;
+              console.log(this.isDuplicatedCode);
+             return;
+        }
+      }
+      this.isDuplicatedCode = false;
+      console.log(this.isDuplicatedCode);
     }
 
     async getallProductCategories() {
@@ -73,7 +98,7 @@ export class ProductUpdateModalComponent implements OnInit {
         const response = await this.productService.getAll();
         this.allDemos = response.data;
     }
-  
+
     async onChangeNameValue(id, value) {
         this.isDuplicatedName = this.helperService.isDuplicatedValue(id, value, 'name', this.allDemos);
     }

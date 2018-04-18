@@ -9,5 +9,29 @@ export class ProductService extends BaseService {
   constructor( public childHttp: Http, public childHelperService: HelperService) {
     super(childHttp, childHelperService, 'products');
   }
+  async Check_CodeSupplier(): Promise<any> {
+    try {
+      let headers = this.childHelperService.getHeadersRequest();
+      let options = new RequestOptions({ headers: headers });
+
+      const response = await this.childHttp.get(this.domain + "/CheckCodeExist", options)
+        .toPromise();
+      return response.json();
+    } catch (error) {
+      this.childHelperService.handleError(error);
+    }
+  }
+  async getAll_Codeproducts(): Promise<any> {
+    try {
+      let headers = this.childHelperService.getHeadersRequest();
+      let options = new RequestOptions({ headers: headers });
+
+      const response = await this.childHttp.get(this.domain + "/getListCodeProducts", options)
+        .toPromise();
+      return response.json();
+    } catch (error) {
+      this.childHelperService.handleError(error);
+    }
+  }
 
 }
