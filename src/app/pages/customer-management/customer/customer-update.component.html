@@ -47,7 +47,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="birthDate">{{'birthdate_customer' | translate }}<i class="star">*</i></label>
+                    <label for="birthDate">{{'birthdate_customer' | translate }}</label>
                     <div class="input-group">
                         <input class="form-control" required placeholder="{{ 'day_month_year' | translate }}" id="birthDate" name="birthDate" 
                             [(ngModel)]="selectedDate"
@@ -58,9 +58,6 @@
                             </button>
                         </span>
                     </div>
-                    <small class="form-text error" *ngIf="birthDate.errors?.required && birthDate.touched">
-                        {{ "is_required" | translate }}
-                    </small>
                 </div>
             </div>
         </div>
@@ -68,49 +65,34 @@
             <div class="col-sm-6">
                     <div class="form-group">
                         <label for="phoneNumber">{{'phonenumber_customer' | translate }}<i class="star">*</i></label>
-                        <input type="text" class="form-control" [(ngModel)]="model.phoneNumber" name="phoneNumber" #phoneNumber="ngModel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
+                        <input type="text" class="form-control" required pattern="[0-9]+" [(ngModel)]="model.phoneNumber" name="phoneNumber" 
+                        #phoneNumber="ngModel" currencyMask>
                         <small class="form-text error" *ngIf="helperService.isEmptyInput(phoneNumber)">
                             {{ "is_required" | translate }}
                         </small>
-                        <small class="form-text error" *ngIf="helperService.isWrongInputPattern(phoneNumber)">
-                            {{ "wrong_number_partern" | translate }}
+                        <small class="form-text error" *ngIf="companyPhone.errors?.pattern && companyPhone.touched">
+                            {{ "number_only" | translate }}
                         </small>
                     </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                        <label for="email">{{'email_customer' | translate }}<i class="star">*</i></label>
-                        <textarea rows="1" class="form-control" id="email" name="email" [(ngModel)]="model.email"></textarea>
+                        <label for="email">{{'email_customer' | translate }}</label>
+                        <textarea rows="1" class="form-control" id="email" name="email" ></textarea>
                 </div>
             </div>
         </div>
-
         <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="CompanyName">{{'name_company' | translate }}<i class="star">*</i></label>
-                        <input type="text" autofocus class="form-control" required [(ngModel)]="model.companyName"
-                        id="companyName" name="companyName" #companyName="ngModel"
-                        (ngModelChange)="onChangeNameValue(model.id, model.companyName)">
-                        <small class="form-text error" *ngIf="companyName.errors?.required && companyName.touched">
-                                {{ "is_required" | translate }}
-                            </small>
-                            <small class="form-text error" *ngIf="!companyName.errors?.required && companyName.touched && isDuplicatedName">
-                                {{ "duplicated_value" | translate }}
-                            </small>
+                        <label for="CompanyName">{{'name_company' | translate }}</label>
+                        <input type="text" autofocus class="form-control" id="companyName" name="companyName" >
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="companyTaxCode">{{'code_company' | translate }}<i class="star">*</i></label>
-                        <input type="text" class="form-control" required  [(ngModel)]="model.companyTaxCode" id="companyTaxCode" name="companyTaxCode"
-                        #companyTaxCode="ngModel"  >
-                        <small class="form-text error" *ngIf="companyTaxCode.errors?.required && companyTaxCode.touched">
-                            {{ "is_required" | translate }}
-                        </small>
-                        <small class="form-text error" *ngIf="companyTaxCode.errors?.pattern && companyTaxCode.touched">
-                            {{ "duplicated_value" | translate }}
-                        </small>
+                        <label for="companyTaxCode">{{'code_company' | translate }}</label>
+                        <input type="text" class="form-control" id="companyTaxCode" name="companyTaxCode">
                     </div>
                 </div>
         </div>
@@ -118,60 +100,49 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="CompanyAddress">{{'address_company' | translate }}<i class="star"></i></label>
+                    <label for="CompanyAddress">{{'address_company' | translate }}</label>
                     <textarea rows="1" class="form-control" id="companyAddress" name="companyAddress" [(ngModel)]="model.companyAddress"></textarea>
                 </div>
             </div>
             <div class="col-sm-6">
-                <label for="companyPhone">{{'phonenumber_company' | translate }}<i class="star"></i></label>
-                <input type="text" class="form-control" [(ngModel)]="model.companyPhone" name="companyPhone" #companyPhone="ngModel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
-                <small class="form-text error" *ngIf="helperService.isEmptyInput(companyPhone)">
-                    {{ "is_required" | translate }}
-                </small>
-                <small class="form-text error" *ngIf="helperService.isWrongInputPattern(companyPhone)">
-                    {{ "wrong_number_partern" | translate }}
+                <label for="companyPhone">{{'phonenumber_company' | translate }}</label>
+                <input type="text" class="form-control" required pattern="[0-9]+" [(ngModel)]="model.companyPhone"
+                 name="companyPhone" #companyPhone="ngModel" currencyMask>
+                <small class="form-text error" *ngIf="companyPhone.errors?.pattern && companyPhone.touched">
+                    {{ "number_only" | translate }}
                 </small>
             </div>
         </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="companyEmail">{{'email_company' | translate }}<i class="star">*</i></label>
-                        <input type="text" autofocus class="form-control" required  [(ngModel)]="model.companyEmail"
-                        id="companyEmail" name="companyEmail" #companyEmail="ngModel"
-                        (ngModelChange)="onChangeNameValue(model.id, model.companyName)">
-                        <small class="form-text error" *ngIf="companyEmail.errors?.required && companyEmail.touched">
-                                {{ "is_required" | translate }}
-                            </small>
-                            <small class="form-text error" *ngIf="!companyEmail.errors?.required && companyEmail.touched && isDuplicatedName">
-                                {{ "duplicated_value" | translate }}
-                            </small>
+                        <label for="companyEmail">{{'email_company' | translate }}</label>
+                        <input type="text" autofocus class="form-control" 
+                        id="companyEmail" name="companyEmail">
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="shipContactName">{{'name_shipcontact' | translate }}<i class="star"></i></label>
-                        <textarea rows="1" class="form-control" id="shipContactName" name="shipContactName" [(ngModel)]="model.shipContactName"></textarea>
+                        <label for="shipContactName">{{'name_shipcontact' | translate }}</label>
+                        <textarea rows="1" class="form-control" id="shipContactName" name="shipContactName" ></textarea>
                     </div>
                 </div>
         </div>
         <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="shipPhone">{{'phonenumber_shipcontact' | translate }}<i class="star">*</i></label>
-                        <input type="text" class="form-control" [(ngModel)]="model.shipPhone" name="shipPhone" #shipPhone="ngModel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
-                        <small class="form-text error" *ngIf="helperService.isEmptyInput(shipPhone)">
-                            {{ "is_required" | translate }}
-                        </small>
-                        <small class="form-text error" *ngIf="helperService.isWrongInputPattern(shipPhone)">
-                            {{ "wrong_number_partern" | translate }}
+                        <label for="shipPhone">{{'phonenumber_shipcontact' | translate }}</label>
+                        <input type="text" class="form-control" required pattern="[0-9]+" [(ngModel)]="model.shipPhone" name="shipPhone" 
+                        #shipPhone="ngModel" currencyMask>
+                        <small class="form-text error" *ngIf="shipPhone.errors?.pattern && shipPhone.touched">
+                            {{ "number_only" | translate }}
                         </small>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="shipAddress">{{'address_shipcontact' | translate }}<i class="star"></i></label>
-                        <textarea rows="1" class="form-control" id="shipAddress" name="shipAddress" [(ngModel)]="model.shipAddress"></textarea>
+                        <label for="shipAddress">{{'address_shipcontact' | translate }}</label>
+                        <textarea rows="1" class="form-control" id="shipAddress" name="shipAddress" ></textarea>
                     </div>
                 </div>
         </div>

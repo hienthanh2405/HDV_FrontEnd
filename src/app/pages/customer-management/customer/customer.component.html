@@ -39,6 +39,7 @@
 
           </thead>
           <tbody>
+              <!-- helperService.convertJSONDatetoDayMonthYear(item.birthDate) -->
             <tr *ngFor="let item of dataList">
               <td *ngIf="helperService.isShowedColumn('name', showedColumnList)">{{item.name}}</td>
               <td *ngIf="helperService.isShowedColumn('companyName', showedColumnList)">{{item.companyName}}</td>
@@ -46,7 +47,7 @@
               <td *ngIf="helperService.isShowedColumn('companyTaxCode', showedColumnList)">{{item.companyTaxCode}}</td>
               <td *ngIf="helperService.isShowedColumn('address', showedColumnList)">{{item.address}}</td>
               <td *ngIf="helperService.isShowedColumn('companyAddress', showedColumnList)">{{item.companyAddress}}</td>
-              <td *ngIf="helperService.isShowedColumn('birthDate', showedColumnList)">{{helperService.convertJSONDatetoDayMonthYear(item.birthDate)}}</td>
+              <td *ngIf="helperService.isShowedColumn('birthDate', showedColumnList)">{{item.birthDate}}</td>
               <td *ngIf="helperService.isShowedColumn('phoneNumber', showedColumnList)">{{item.phoneNumber}}</td>
               <td *ngIf="helperService.isShowedColumn('companyPhone', showedColumnList)">{{item.companyPhone}}</td>
               <td *ngIf="helperService.isShowedColumn('email', showedColumnList)">{{item.email}}</td>
