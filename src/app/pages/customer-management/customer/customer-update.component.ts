@@ -33,6 +33,8 @@ export class CustomerUpdateModalComponent implements OnInit {
     allStorages: any = [];
     isSelectedStorages: any = [];
     isKeepOpen: boolean = false;
+    dataListCode:any = [];
+    isDuplicatedCode = false;
 
     constructor(public activeModal: NgbActiveModal,
         public helperService: HelperService,
@@ -53,10 +55,33 @@ export class CustomerUpdateModalComponent implements OnInit {
             this.model = this.helperService.deepCopy(this.editedModel);
         }
         await this.getAllCustomers();
+        await this.getListCode_customes();
     }
 
     isDuplicatedForm() {
         return this.isDuplicatedName;
+    }
+    async getListCode_customes() {
+      try {
+        let response = await this.customerService.getAll_CodeCustomers();
+        console.log(response);
+        this.dataListCode = response;
+        console.log(this.dataListCode);
+      } catch (error) {
+
+      }
+    }
+    onChangeCustomerCode(code){
+      console.log(code);
+      for(let i = 0 ; i < this.dataListCode.length ; i ++){
+        if (code === this.dataListCode[i]){
+              this.isDuplicatedCode = true;
+              console.log(this.isDuplicatedCode);
+             return;
+        }
+      }
+      this.isDuplicatedCode = false;
+      console.log(this.isDuplicatedCode);
     }
 
     async getAllCustomers() {

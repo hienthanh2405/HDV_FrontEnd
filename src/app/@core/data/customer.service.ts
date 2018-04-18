@@ -10,4 +10,29 @@ export class CustomerService extends BaseService {
     super(childHttp, childHelperService, 'customers');
   }
 
+  async Check_CodeCustomerss(): Promise<any> {
+    try {
+      let headers = this.childHelperService.getHeadersRequest();
+      let options = new RequestOptions({ headers: headers });
+
+      const response = await this.childHttp.get(this.domain + "/CheckCodeExist", options)
+        .toPromise();
+      return response.json();
+    } catch (error) {
+      this.childHelperService.handleError(error);
+    }
+  }
+  async getAll_CodeCustomers(): Promise<any> {
+    try {
+      let headers = this.childHelperService.getHeadersRequest();
+      let options = new RequestOptions({ headers: headers });
+
+      const response = await this.childHttp.get(this.domain + "/getListCodeCustomers", options)
+        .toPromise();
+      return response.json();
+    } catch (error) {
+      this.childHelperService.handleError(error);
+    }
+  }
+
 }

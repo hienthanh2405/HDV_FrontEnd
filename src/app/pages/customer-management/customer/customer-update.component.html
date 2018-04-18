@@ -27,13 +27,15 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="Code">{{'code_customer' | translate }}<i class="star">*</i></label>
-                        <input type="text" class="form-control" required [(ngModel)]="model.Code" id="Code" name="Code"
-                        #Code="ngModel"  >
+                        <input type="text" class="form-control"
+                        (ngModelChange)="onChangeCustomerCode($event)"
+                          required [(ngModel)]="model.Code" id="Code" name="Code"
+                        #Code="ngModel" >
                         <small class="form-text error" *ngIf="Code.errors?.required && Code.touched">
                             {{ "is_required" | translate }}
                         </small>
-                        <small class="form-text error" *ngIf="Code.errors?.pattern && Code.touched">
-                            {{ "duplicated_value" | translate }}
+                        <small class="form-text error" *ngIf="!Code.errors?.pattern && Code.touched && isDuplicatedCode">
+                            {{ "duplicatedCode_value" | translate }}
                         </small>
                     </div>
                 </div>
@@ -49,7 +51,7 @@
                 <div class="form-group">
                     <label for="birthDate">{{'birthdate_customer' | translate }}</label>
                     <div class="input-group">
-                        <input class="form-control" required placeholder="{{ 'day_month_year' | translate }}" id="birthDate" name="birthDate" 
+                        <input class="form-control" required placeholder="{{ 'day_month_year' | translate }}" id="birthDate" name="birthDate"
                             [(ngModel)]="selectedDate"
                             ngbDatepicker #birthDate="ngModel" #d="ngbDatepicker">
                         <span class="input-group-btn">
@@ -65,7 +67,7 @@
             <div class="col-sm-6">
                     <div class="form-group">
                         <label for="phoneNumber">{{'phonenumber_customer' | translate }}<i class="star">*</i></label>
-                        <input type="text" class="form-control" required pattern="[0-9]+" [(ngModel)]="model.phoneNumber" name="phoneNumber" 
+                        <input type="text" class="form-control" required pattern="[0-9]+" [(ngModel)]="model.phoneNumber" name="phoneNumber"
                         #phoneNumber="ngModel" currencyMask>
                         <small class="form-text error" *ngIf="helperService.isEmptyInput(phoneNumber)">
                             {{ "is_required" | translate }}
@@ -96,7 +98,7 @@
                     </div>
                 </div>
         </div>
-       
+
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
@@ -117,7 +119,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="companyEmail">{{'email_company' | translate }}</label>
-                        <input type="text" autofocus class="form-control" 
+                        <input type="text" autofocus class="form-control"
                         id="companyEmail" name="companyEmail">
                     </div>
                 </div>
@@ -132,7 +134,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="shipPhone">{{'phonenumber_shipcontact' | translate }}</label>
-                        <input type="text" class="form-control" required pattern="[0-9]+" [(ngModel)]="model.shipPhone" name="shipPhone" 
+                        <input type="text" class="form-control" required pattern="[0-9]+" [(ngModel)]="model.shipPhone" name="shipPhone"
                         #shipPhone="ngModel" currencyMask>
                         <small class="form-text error" *ngIf="shipPhone.errors?.pattern && shipPhone.touched">
                             {{ "number_only" | translate }}

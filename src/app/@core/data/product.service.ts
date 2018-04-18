@@ -9,7 +9,7 @@ export class ProductService extends BaseService {
   constructor( public childHttp: Http, public childHelperService: HelperService) {
     super(childHttp, childHelperService, 'products');
   }
-  async Check_CodeSupplier(): Promise<any> {
+  async Check_CodeProducts(): Promise<any> {
     try {
       let headers = this.childHelperService.getHeadersRequest();
       let options = new RequestOptions({ headers: headers });
