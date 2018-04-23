@@ -32,13 +32,13 @@ export class PagesComponent implements OnInit {
       tranlateWords = res;
     });
     this.menu = [
-      {
-        title: tranlateWords['dashboard'],
-        icon: 'fa fa-tachometer',
-        link: '/pages/dashboard',
-        // menuhome: true,
-        key: 'Dashboard'
-      },
+      // {
+      //   title: tranlateWords['dashboard'],
+      //   icon: 'fa fa-tachometer',
+      //   link: '/pages/dashboard',
+      //   // menuhome: true,
+      //   key: 'Dashboard'
+      // },
       {
 
         title: tranlateWords['storage_management'],
@@ -52,10 +52,10 @@ export class PagesComponent implements OnInit {
             title: tranlateWords['inventory'],
             link: '/pages/storage-management/inventories',
           },
-          {
-            title: tranlateWords['warehousing'],
-            link: '/pages/storage-management/warehousings',
-          },
+          // {
+          //   title: tranlateWords['warehousing'],
+          //   link: '/pages/storage-management/warehousings',
+          // },
         ],
       },
       {
@@ -86,25 +86,6 @@ export class PagesComponent implements OnInit {
           },
         ],
       },
-      
-
-
-      // {
-      //   title: tranlateWords['setting'],
-      //   icon: 'nb-gear',
-      //   children: [
-      //     {
-      //       title: tranlateWords['accessable_pages'],
-      //       link: '/pages/settings/accessable-pages',
-      //       key: 'AccessablePage'
-      //     },
-      //     {
-      //       title: tranlateWords['user'],
-      //       link: '/pages/settings/users',
-      //       key: 'User'
-      //     },
-      //   ],
-      // },
       {
         title: tranlateWords['auth'],
         icon: 'nb-locked',
@@ -121,9 +102,6 @@ export class PagesComponent implements OnInit {
       },
     ];
   }
-
-
-
   async ngOnInit() {
     await this.getAccessablePages();
     this.removeUnaccessableMenu();
