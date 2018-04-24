@@ -48,10 +48,10 @@ export class PagesComponent implements OnInit {
             title: tranlateWords['storage'],
             link: '/pages/storage-management/storages',
           },
-          {
-            title: tranlateWords['inventory'],
-            link: '/pages/storage-management/inventories',
-          },
+          // {
+          //   title: tranlateWords['inventory'],
+          //   link: '/pages/storage-management/inventories',
+          // },
           // {
           //   title: tranlateWords['warehousing'],
           //   link: '/pages/storage-management/warehousings',
