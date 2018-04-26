@@ -32,6 +32,7 @@
       <div class="row">
         <table class="table">
           <thead>
+            <td>Hình Ảnh</td>
             <td *ngFor="let showedColumn of showedColumnList" [hidden]="!helperService.isShowedColumn(showedColumn.name , showedColumnList )"
               [ngClass]="helperService.getSortableCssClass(sort , showedColumn.name ,   showedColumn.sortable )" (click)="onChangeSortedField(showedColumn.name , showedColumn.sortable)">{{ showedColumn.translateKey | translate }}</td>
             <td></td>
@@ -39,7 +40,10 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of dataList">
-              <td *ngIf="helperService.isShowedColumn('Name', showedColumnList)">{{item.name}}</td>
+              <td> 
+                <img src="{{item.imageUrl}}" width="50px" class="img img-responsive">
+              </td>
+              <td *ngIf="helperService.isShowedColumn('name', showedColumnList)">{{item.name}}</td>
               <td *ngIf="helperService.isShowedColumn('imgURL', showedColumnList)">{{item.imageUrl}}</td>
               <td>
                 <ng-template #popContent>

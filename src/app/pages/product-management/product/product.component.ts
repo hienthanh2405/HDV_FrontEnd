@@ -27,10 +27,10 @@ export class ProductComponent implements OnInit {
     { name: 'code', translateKey: 'code', isShowed: true, sortable: true },
     { name: 'name', translateKey: 'name_product', isShowed: true, sortable: true },
     { name: 'NameProductCatogory', translateKey: 'NameProductCatogory', isShowed: true, sortable: true },
-    { name: 'RetailPrice',translateKey: 'RetailPrice', isShowed: true, sortable: true },
-    { name: 'WholeSalePrice', translateKey: 'WholeSalePrice', isShowed: true, sortable: true },
-    { name: 'DiscountPercent', translateKey: 'DiscountPercent', isShowed: true, sortable: true },
-    { name: 'ImageUrlList', translateKey: 'ImageUrlList', isShowed: true, sortable: true },
+    { name: 'retailPrice',translateKey: 'RetailPrice', isShowed: true, sortable: true },
+    { name: 'wholeSalePrice', translateKey: 'WholeSalePrice', isShowed: true, sortable: true },
+    { name: 'discountPercent', translateKey: 'DiscountPercent', isShowed: true, sortable: true },
+    { name: 'imageUrlList', translateKey: 'ImageUrlList', isShowed: true, sortable: true },
     { name: 'CreatedDate', translateKey: 'CreatedDate', isShowed: true, sortable: true }
     
   ];
@@ -79,6 +79,7 @@ export class ProductComponent implements OnInit {
   }
   onClickEditBtn(model: any): void {
     const modalRef = this.modalService.open(ProductUpdateModalComponent, { backdrop: 'static' });
+    modalRef.componentInstance.model = model;
     modalRef.componentInstance.reload = () => {
       this.getList();
     };

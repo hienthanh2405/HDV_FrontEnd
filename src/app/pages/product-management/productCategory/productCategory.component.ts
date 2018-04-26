@@ -24,7 +24,7 @@ export class ProductCategoryComponent implements OnInit {
   keyword: string = '';
 
   showedColumnList = [
-    { name: 'Name', translateKey: 'nameProductCategory', isShowed: true, sortable: true },
+    { name: 'name', translateKey: 'nameProductCategory', isShowed: true, sortable: true },
     { name: 'imgURL', translateKey: 'imglinkURL', isShowed: false, sortable: true }
   ];
 
@@ -74,10 +74,13 @@ export class ProductCategoryComponent implements OnInit {
   }
   onClickEditBtn(model: any): void {
     const modalRef = this.modalService.open(ProductCategoryUpdateModalComponent, { backdrop: 'static' });
-    modalRef.componentInstance.reload = () => {
-      this.getList();
-    };
     modalRef.componentInstance.editedModel = model;
+    modalRef.result.then(( closeData=>{
+      this.getList();
+    })).catch(dismissData =>{
+
+    });
+  
   }
   onClickDeleteBtn(model: any): void {
     const modalRef = this.modalService.open(DeleteDialogComponent, { backdrop: 'static' });

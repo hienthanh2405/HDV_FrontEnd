@@ -32,13 +32,13 @@ export class PagesComponent implements OnInit {
       tranlateWords = res;
     });
     this.menu = [
-      // {
-      //   title: tranlateWords['dashboard'],
-      //   icon: 'fa fa-tachometer',
-      //   link: '/pages/dashboard',
-      //   // menuhome: true,
-      //   key: 'Dashboard'
-      // },
+      {
+        title: tranlateWords['dashboard'],
+        icon: 'fa fa-tachometer',
+        link: '/pages/dashboard',
+        // menuhome: true,
+        key: 'Dashboard'
+      },
       {
 
         title: tranlateWords['storage_management'],

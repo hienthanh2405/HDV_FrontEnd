@@ -19,9 +19,6 @@
                     <small class="form-text error" *ngIf="name.errors?.required && name.touched">
                         {{ "is_required" | translate }}
                     </small>
-                     <!-- <small class="form-text error" *ngIf="!name.errors?.required && name.touched && isDuplicatedName">
-                        {{ "duplicated_value" | translate }}
-                     </small> -->
                 </div>
             </div>
             <div class="col-sm-6">
@@ -44,7 +41,7 @@
                     <label for="code">{{'code' | translate }}<i class="star">*</i></label>
                     <input type="text" class="form-control"  name="code"
                       (ngModelChange)="onChangeSupplierCode($event)"
-                         required [(ngModel)]="model.code"  placeholder="Supplier_code"   #code="ngModel"/>
+                         required [(ngModel)]="model.code"  placeholder="Supplier_code" #code="ngModel"/>
 
                     <small class="form-text error" *ngIf="code.errors?.required && code.touched">
                       {{ "is_required" | translate }}
@@ -52,16 +49,13 @@
                     <small class="form-text error" *ngIf="!code.errors?.required && code.touched && isDuplicatedCode">
                       {{ "duplicated_value" | translate }}
                    </small>
-
                   </div>
             </div>
         </div>
         <div class="row">
           <div class="col-sm-12">
               <div class="form-group">
-                      <label>{{'email' | translate }}
-                          <i class="star">*</i>
-                      </label>
+                      <label>{{'email' | translate }}<i class="star">*</i></label>
                       <input type="text" class="form-control" [(ngModel)]="model.email" name="email" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
                       <small class="form-text error" *ngIf="helperService.isEmptyInput(email)">
                           {{ "is_required" | translate }}
@@ -69,7 +63,6 @@
                       <small class="form-text error" *ngIf="helperService.isWrongInputPattern(email)">
                           {{ "wrong_email_partern" | translate }}
                       </small>
-
               </div>
           </div>
       </div>
@@ -85,7 +78,7 @@
             </div>
         </div>
     </div>
-        <div class="row" *ngIf="!isEditMode">
+        <!-- <div class="row" *ngIf="!isEditMode">
                 <div class="col-sm-12">
                     <div class="form-group">
                         <div class="form-group validation-checkboxes row">
@@ -93,7 +86,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
     </div>
     <div class="modal-footer">

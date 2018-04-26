@@ -18,7 +18,7 @@ import { ProductCategoryService } from 'app/@core/data/productCategory.service';
 
 export class ProductCategoryUpdateModalComponent implements OnInit {
     @Input() editedModel: any;
-    @Input() reload: any;
+  
 
     private today: any = this.helperService.getTodayForDatePicker();
 
@@ -91,7 +91,7 @@ export class ProductCategoryUpdateModalComponent implements OnInit {
             }
             if (!this.isKeepOpen) {
                 this.activeModal.close();
-                this.reload();
+              
             }
         } catch (error) {
             this.helperService.showErrorToast(error);

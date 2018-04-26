@@ -42,10 +42,10 @@
               <td *ngIf="helperService.isShowedColumn('code', showedColumnList)">{{item.code}}</td>
               <td *ngIf="helperService.isShowedColumn('name', showedColumnList)">{{item.name}}</td>
               <td *ngIf="helperService.isShowedColumn('NameProductCatogory', showedColumnList)">{{item.productCategory.name}}</td>
-              <td *ngIf="helperService.isShowedColumn('RetailPrice', showedColumnList)">{{item.retailPrice}}</td>
-              <td *ngIf="helperService.isShowedColumn('WholeSalePrice', showedColumnList)">{{item.wholeSalePrice}}</td>
-              <td *ngIf="helperService.isShowedColumn('DiscountPercent', showedColumnList)">{{item.discountPercent}}</td>
-              <td *ngIf="helperService.isShowedColumn('ImageUrlList', showedColumnList)">{{item.imageUrlList}}</td>
+              <td *ngIf="helperService.isShowedColumn('retailPrice', showedColumnList)">{{item.retailPrice}}</td>
+              <td *ngIf="helperService.isShowedColumn('wholeSalePrice', showedColumnList)">{{item.wholeSalePrice}}</td>
+              <td *ngIf="helperService.isShowedColumn('discountPercent', showedColumnList)">{{item.discountPercent}}</td>
+              <td *ngIf="helperService.isShowedColumn('imageUrlList', showedColumnList)">{{item.imageUrlList}}</td>
               <td *ngIf="helperService.isShowedColumn('CreatedDate', showedColumnList)">{{helperService.convertJSONDatetoDayMonthYear(item.createdDate)}}</td>
               
               <td>
