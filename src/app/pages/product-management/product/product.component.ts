@@ -79,7 +79,7 @@ export class ProductComponent implements OnInit {
   }
   onClickEditBtn(model: any): void {
     const modalRef = this.modalService.open(ProductUpdateModalComponent, { backdrop: 'static' });
-    modalRef.componentInstance.model = model;
+    // modalRef.componentInstance.model = model;
     modalRef.componentInstance.reload = () => {
       this.getList();
     };
