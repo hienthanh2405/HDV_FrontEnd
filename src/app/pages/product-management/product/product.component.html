@@ -50,12 +50,12 @@
               
               <td>
                 <ng-template #popContent>
-                  <!-- <div class="customize-action-button customize-edit-button" (click)="onClickEditBtn(item)">
+                  <div class="customize-action-button customize-edit-button" (click)="onClickEditBtn(item)">
                     <i class="fa fa-pencil" aria-hidden="true"></i> {{'edit' | translate}}
-                  </div> -->
-                  <div class="customize-action-button customize-delete-button" (click)="onClickDeleteBtn(item)">
-                    <i class="fa fa-trash" aria-hidden="true"></i> {{'delete' | translate}}
                   </div>
+                  <!-- <div class="customize-action-button customize-delete-button" (click)="onClickDeleteBtn(item)">
+                    <i class="fa fa-trash" aria-hidden="true"></i> {{'delete' | translate}}
+                  </div> -->
                 </ng-template>
                 <button type="button" class="btn btn-sm btn-outline-secondary" placement="bottom" [ngbPopover]="popContent">
                   <i class="fa fa-cog" aria-hidden="true"></i>
