@@ -29,7 +29,7 @@ export class ProductComponent implements OnInit {
     { name: 'NameProductCatogory', translateKey: 'NameProductCatogory', isShowed: true, sortable: true },
     { name: 'retailPrice',translateKey: 'RetailPrice', isShowed: true, sortable: true },
     { name: 'wholeSalePrice', translateKey: 'WholeSalePrice', isShowed: true, sortable: true },
-    { name: 'discountPercent', translateKey: 'DiscountPercent', isShowed: true, sortable: true },
+    { name: 'discountPercent', translateKey: 'DiscountPercent', isShowed: false, sortable: true },
     { name: 'imageUrlList', translateKey: 'ImageUrlList', isShowed: false, sortable: true },
     { name: 'CreatedDate', translateKey: 'CreatedDate', isShowed: true, sortable: true }
     
