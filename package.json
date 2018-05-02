@@ -4,7 +4,6 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "start:hmr": "ng serve --hmr",
     "start:aot": "ng serve --aot",
     "build": "rimraf dist && ng build",
@@ -20,9 +19,13 @@
     "pree2e": "webdriver-manager update --standalone false --gecko false",
     "e2e": "ng e2e",
     "docs": "compodoc -p src/tsconfig.app.json -d docs",
-    "docs:serve": "compodoc -p src/tsconfig.app.json -d docs -s"
+    "docs:serve": "compodoc -p src/tsconfig.app.json -d docs -s",
+    "postinstall": "ng build --aot -prod",
+    "start": "node server.js"
   },
   "dependencies": {
+    "@angular/cli": "1.2.6",
+    "@angular/compiler-cli": "4.3.2",
     "@agm/core": "1.0.0-beta.0",
     "@angular/animations": "^4.3.2",
     "@angular/common": "4.3.2",
@@ -73,8 +76,6 @@
     "zone.js": "0.8.16"
   },
   "devDependencies": {
-    "@angular/cli": "1.2.6",
-    "@angular/compiler-cli": "4.3.2",
     "@angular/language-service": "4.3.2",
     "@compodoc/compodoc": "^1.0.1",
     "@types/d3-color": "1.0.4",
@@ -101,5 +102,8 @@
     "tslint": "5.4.2",
     "tslint-language-service": "0.9.6",
     "typescript": "2.3.4"
+  },"engines": {
+    "node" : "8.10.0",
+    "yarn" : "1.6.0"
   }
 }
