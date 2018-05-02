@@ -51,25 +51,6 @@
     "inventory":"Tồn kho",
     "amount_inventory":"Số lượng tồn",
 
-    "warehousing":"Nhập đơn kho",
-    "codeWarehousing":"Mã đơn nhập",
-    "CreatedDate_Warehousing":"Ngày tạo",
-    "NameUser_Warehousing":"Tên người lập",
-    "NameSupplier_Warehousing":"Nhà cung cấp",
-    "ProductList_Warehousing":"Danh sách sản phẩm",
-    "TotalMoney_Warehousing":"Tổng tiền",
-    "PayMoney_Warehousing":"Tiền trả",
-    "DebtMoney_Warehousing":"Tiền nợ",
-    "NameProduct_Warehousing":"Tên Sản Phẩm",
-    "add_warehousing":"Tạo đơn nhập kho",
-    "Amount_Warehousing":"Số lượng",
-    "Capital_Warehousing":"Giá gốc",
-    "TotalPrice_Warehousing":"Thành tiền",
-    "ProductName_Warehousing":"Tên Sản Phẩm",
-    "Note_Warehousing":"Ghi chú",
-    "bill_warehousing":"Đơn Nhập Kho",
-
-
     "add_supplier":"Tạo nhà cung cấp",
 
     "demo": "Thử nghiệm",

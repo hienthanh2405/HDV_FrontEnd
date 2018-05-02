@@ -23,7 +23,6 @@ export class PagesComponent implements OnInit {
       'demo_management',
       'storage_management','storage','inventory',
       'product_management','product','productCategory',
-      'warehousing_management','warehousing',
       'supplier',
       'customer_management','customer',
       'demo', 'accessable_page', 'logout' , 'setting'
@@ -48,14 +47,6 @@ export class PagesComponent implements OnInit {
             title: tranlateWords['storage'],
             link: '/pages/storage-management/storages',
           },
-          // {
-          //   title: tranlateWords['inventory'],
-          //   link: '/pages/storage-management/inventories',
-          // },
-          // {
-          //   title: tranlateWords['warehousing'],
-          //   link: '/pages/storage-management/warehousings',
-          // },
         ],
       },
       {

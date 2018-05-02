@@ -11,8 +11,6 @@ import { SupplierService } from 'app/@core/data/supplier.service';
 import { StorageService } from './storage.service';
 import { ProductCategoryService } from './productCategory.service';
 import { ProductService } from './product.service';
-import { WarehousingService } from './warehousing.service'
-import { CreateWareHousingService } from './createwarehousing.service';
 
 const SERVICES = [
   AuthService,
@@ -25,9 +23,7 @@ const SERVICES = [
   StorageService,
   ProductService,
   ProductCategoryService,
-  WarehousingService,
-  CustomerService,
-  CreateWareHousingService
+  CustomerService
 ];
 
 @NgModule({

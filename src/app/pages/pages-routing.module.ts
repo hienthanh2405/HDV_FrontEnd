@@ -8,7 +8,6 @@ import { DemoComponent } from 'app/pages/demo-management/demo/demo.component';
 import { StorageComponent } from 'app/pages/storage-management/storage/storage.component';
 import { CustomerComponent } from 'app/pages/customer-management/customer/customer.component';
 import { InventoryComponent } from 'app/pages/storage-management/inventory/inventory.component';
-import { WarehousingComponent} from 'app/pages/storage-management/warehousing/warehousing.component';
 import { ProductComponent } from 'app/pages/product-management/product/product.component';
 import { ProductCategoryComponent } from 'app/pages/product-management/productCategory/productCategory.component';
 import { SupplierComponent } from 'app/pages/product-management/supplier/supplier.component';
