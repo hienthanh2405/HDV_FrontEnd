@@ -85,7 +85,7 @@
                 <div class="form-group">
                     <label for="demo-category">{{'demo_categories' | translate }}<i class="star">*</i></label>
                     <select class="form-control" required [(ngModel)]="model.demoCategoryId" id="demo-category" name="demo-category" #demoCategory="ngModel">
-                        <option [ngValue]="item.id" *ngFor="let item of demoCategoryList | sort:'name' " >{{item.name}}</option>
+                        <!-- <option [ngValue]="item.id" *ngFor="let item of demoCategoryList | sort:'name' " >{{item.name}}</option> -->
                       </select>
                 </div>
             </div>
