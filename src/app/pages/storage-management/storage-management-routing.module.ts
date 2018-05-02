@@ -13,9 +13,6 @@ import { ShowedColumnsButtonComponent } from 'app/pages/commons/showed-columns-b
 import { InventoryComponent } from './inventory/inventory.component';
 import { InventoryUpdateModalComponent } from './inventory/inventory-update.component';
 
-import { WarehousingComponent } from './warehousing/warehousing.component';
-
-import { CreateWarehousingComponent } from './warehousing/createWarehousing.component';
 
 const routes: Routes = [{
   path: '',
@@ -27,14 +24,6 @@ const routes: Routes = [{
   {
     path: 'inventories',
     component: InventoryComponent,
-  },
-  {
-    path: 'warehousings',
-    component: WarehousingComponent,
-  },
-  {
-    path: 'warehousings-create',
-    component: CreateWarehousingComponent,
   },
 ]
 }];
@@ -55,6 +44,4 @@ export const routedComponents = [
   StorageManagementComponent,
   StorageComponent ,
   InventoryComponent,
-  WarehousingComponent,
-  CreateWarehousingComponent,
 ];
