@@ -5,6 +5,5 @@
  */
 export const environment = {
   production: true,
-  // apiDomain: 'https://thcmanagementapi.azurewebsites.net/'
   apiDomain: 'https://plantstore.azurewebsites.net/'
 };
